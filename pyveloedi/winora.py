@@ -21,7 +21,7 @@
 # THE SOFTWARE.
 
 import copy
-import urllib2
+import urllib3
 from lxml import etree
 import urllib
 
@@ -67,7 +67,7 @@ class Context(ContextBase):
                    ('password', self._passwd)] + params
         self.log('Args', str(params))
         url = '%s?%s' % (self._url, urllib.urlencode(params))
-        return urllib2.urlopen(url).read()
+        return urllib3.urlopen(url).read()
 
     def check(self):
         vi = VersionInfo(self)
@@ -154,7 +154,7 @@ class OrderBasket(WinoraBase):
     def execute(self):
         root = self._ctx.dispatch_request(self)
         res, = root.xpath('/root/ordernumber')
-        return unicode(res.text)
+        return str(res.text)
 
 
 class Product(ProductBase):
@@ -251,8 +251,9 @@ class Order(OrderBase):
         vb = ViewBasket(self._ctx)
         self._data = vb.execute()
 
+    @classmethod
     def add_lines(self, lines):
-        cls._lines += lines
+        self.cls_lines += lines
         self._synch()
 
     @property
