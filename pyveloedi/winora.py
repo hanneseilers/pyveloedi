@@ -26,7 +26,7 @@ from lxml import etree
 import urllib
 
 from .base import ProductBase, ContextBase, OrderBase, EDIException, Model
-import base
+import pyveloedi.base as base
 
 BASKETNAME = 'warenkorb'
 

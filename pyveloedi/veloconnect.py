@@ -26,8 +26,8 @@ import urllib
 import urllib3
 import re
 
+import pyveloedi.base as base
 from .base import ProductBase, ContextBase, EDIException, OrderBase, Model
-import base
 
 
 CAC_NAMESPACE = 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-1.0'
