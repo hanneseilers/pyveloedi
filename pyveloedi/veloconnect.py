@@ -201,7 +201,7 @@ class Context(ContextBase):
                    ('Password', self._passwd),
                    ('IsTest', self._istest),]
 
-        params = urllib.urlencode(params)
+        params = urllib.parse.urlencode(params)
         url = '%s?%s' % (self._url, params)
         self.log('URL for GET request', url)
         return urllib3.urlopen(url).read()
